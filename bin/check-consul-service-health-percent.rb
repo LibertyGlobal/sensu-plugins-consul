@@ -100,8 +100,8 @@ class CheckConsulServiceHealthPercent < Sensu::Plugin::Check::CLI
       } if d['Status'] == 'passing'
     end
     percent = (passing.size.to_f / (data.size.to_f / 100)).round(2)
-    critical "Service #{config[:service]} health is below #{config[:critical]}%" if percent < config[:critical].to_f
-    warning "Service #{config[:service]} health is below #{config[:critical]}%" if percent < config[:warning].to_f
-    ok "Service #{config[:service]} health is above threshold"
+    critical "Service #{config[:service]} health is #{percent}% below #{config[:critical]}%" if percent < config[:critical].to_f
+    warning "Service #{config[:service]} health is #{percent}% below #{config[:warning]}%" if percent < config[:warning].to_f
+    ok "Service #{config[:service]} health is #{percent}%"
   end
 end
