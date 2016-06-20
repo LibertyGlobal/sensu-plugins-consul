@@ -85,7 +85,8 @@ class CheckConsulServiceHealthPercent < Sensu::Plugin::Check::CLI
       dip.url = config[:consul]
     end
     data = acquire_service_data.reduce(:+)
-    return critical "Could not find service #{config[:service]}" if data.empty?
+    p data
+    return critical "Could not find service #{config[:service]}. Are checks defined?" if data.empty?
 
     passing = []
 
