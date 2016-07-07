@@ -86,7 +86,7 @@ class CheckConsulServiceHealthPercent < Sensu::Plugin::Check::CLI
     end
     data = acquire_service_data.reduce(:+)
     p data
-    return critical "Could not find service #{config[:service]}. Are checks defined?" if data.empty?
+    return unknown "Could not find service #{config[:service]}. Are checks defined?" if data.empty?
 
     passing = []
 
